@@ -59,10 +59,10 @@ class DNS extends udp.Socket {
   resolveAAAA(domain) {
     return this.resolve(domain, 'AAAA');
   }
-  resolveMX() {
+  resolveMX(domain) {
     return this.resolve(domain, 'MX');
   }
-  resolveCNAME() {
+  resolveCNAME(domain) {
     return this.resolve(domain, 'CNAME');
   }
 }
