@@ -7,7 +7,7 @@
 
 ### How to use it (on Linux / MacOS machines)
 
-Clone the whole repository, then enter the main folder and run 
+Clone the whole repository, then enter the main folder and install dependencies by
 
 ```bash
 $ npm install
