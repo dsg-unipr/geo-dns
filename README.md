@@ -1,87 +1,37 @@
-# dns2 
+# geo-dns 
 
 ![NPM version](https://img.shields.io/npm/v/dns2.svg?style=flat)
 [![Build Status](https://travis-ci.org/song940/node-dns.svg?branch=master)](https://travis-ci.org/song940/node-dns)
 
-> A DNS server and client implementation
+> A DNS server with geo-features, based on dns2
 
-### Installation
+### How to use it (on Linux / MacOS machines)
 
-```bash
-$ npm install dns2
-```
-
-### Example Client
-
-Lookup any records available for the domain `lsong.org`.
-
-```js
-const DNS = require('dns2');
-
-const dns = new DNS();
-
-(async () => {
-  const result = await dns.resolve('google.com')
-  console.log(result);
-  dns.close()
-})();
-```
-
-### Example Server
-
-Respond to any DNS request on UDP port 5353 with `8.8.8.8`, a Google Public DNS server address.
-
-```js
-const dns = require('dns2');
-
-const server = dns.createServer(function(request,send){
-  
-  const response = new dns.Packet(request);
-  
-  response.header.qr = 1;
-  response.answers.push({
-    address: '8.8.8.8',
-    type: dns.Packet.TYPE.A,
-    class: dns.Packet.CLASS.IN
-  });
-  
-  send(response);
-}).listen(5353);
-```
-
-Then you can test your DNS server:
+Clone the whole repository, then enter the main folder and run 
 
 ```bash
-$ dig @127.0.0.1 -p5353 lsong.org
+$ npm install
 ```
 
-Note that when implementing your own lookups, the contents of the query
-will be found in `request.questions[0].name`.
+Then enter the example folder and run
 
-### API
+```bash
+$ node geo-server.js
+```
 
-- dns2.createServer()
-- dns2.lookup()
-- dns2.Packet()
-- dns2.Client()
-- dns2.Server()
+Finally, test the server using dig:
+
+```bash
+$ dig @127.0.0.1 -p 53 6gkzwgjz*._iot._udp.unipr.it -t ptr
+```
 
 ### Relevant Specifications
 
 + [RFC-1034 - Domain Names - Concepts and Facilities](https://tools.ietf.org/html/rfc1034)
 + [RFC-1035 - Domain Names - Implementation and Specification](https://tools.ietf.org/html/rfc1035)
 + [RFC-2782 - A DNS RR for specifying the location of services (DNS SRV)](https://tools.ietf.org/html/rfc2782)
++ [RFC-6763 - DNS-Based Service Discovery](https://tools.ietf.org/html/rfc6763)
 
-### Contributing
-
-- Fork this Repo first
-- Clone your Repo
-- Install dependencies by `$ npm install`
-- Checkout a feature branch
-- Feel free to add your features
-- Make sure your features are fully tested
-- Publish your local branch, Open a pull request
-- Enjoy hacking <3
 
 ### MIT license
 
