@@ -43,6 +43,7 @@ Run Redis with default configuration (it will listen on port 6379).
 Then:
 
 ```bash
+$ npm install redis
 $ cd example
 $ node  geo-server-redis.js
 ```
