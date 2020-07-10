@@ -37,6 +37,7 @@ $ dig @127.0.0.1 -p 53 6gkzwgjz.unipr.it -t A
 ### Run the server with Redis database
 
 Install Redis (if you don't have it yet): https://redis.io/
+
 Run Redis with default configuration (it will listen on port 6379).
 
 Then:
