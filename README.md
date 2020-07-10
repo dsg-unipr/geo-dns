@@ -13,14 +13,14 @@ $ npm install
 in the main folder.
 
 
-### Run the Server
+### Run the simple standalone server
 
 ```bash
 $ cd example
 $ node  geo-server.js
 ```
 
-### Test the Server
+### Test the simple standalone server
 
 ```bash
 $ dig @127.0.0.1 -p 53 _iot._udp -t PTR
@@ -33,6 +33,21 @@ $ dig @127.0.0.1 -p 53 6gkzwgjz*._iot._udp -t SRV
 ```bash
 $ dig @127.0.0.1 -p 53 6gkzwgjz.unipr.it -t A
 ```
+
+### Run the server with Redis database
+
+Install Redis (if you don't have it yet): https://redis.io/
+Run Redis with default configuration (it will listen on port 6379).
+
+Then:
+
+```bash
+$ cd example
+$ node  geo-server-redis.js
+```
+
+You can test it using the same dig commands listed above.
+
 
 ### Relevant Specifications
 
