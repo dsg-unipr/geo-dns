@@ -31,7 +31,7 @@ $ dig @127.0.0.1 -p 53 6gkzwgjz*._iot._udp -t SRV
 ```
 
 ```bash
-$ dig @127.0.0.1 -p 53 6gkzwgjz.unipr.it -t A
+$ dig @127.0.0.1 -p 53 6gkzwgjzn820.unipr.it -t A
 ```
 
 ### Run the server with Redis database
