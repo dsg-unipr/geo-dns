@@ -4,24 +4,24 @@ const Packet = require('../packet');
 
 
 var instances = {
-  'dr1': '_dr._iot._udp',
-  'dr2': '_dr._iot._udp',
-  'dr3': '_dr._iot._udp',
+  'humidity.dr12': '_iot._udp',
+  'temperature.dr34': '_iot._udp',
+  'temperature.dr56': '_iot._udp',
 };
 const instancekeys = Object.keys(instances);
 const instancevalues = Object.values(instances);
 
 var domains = {
-  'dr1._iot._udp': 'dr1.unipr.it',
-  'dr2._iot._udp': 'dr2.unipr.it',
-  'dr3._iot._udp': 'dr3.unipr.it',
+  'humidity.dr12._iot._udp': 'dr12.unipr.it',
+  'temperature.dr34._iot._udp': 'dr34.unipr.it',
+  'temperature.dr56': 'dr56.unipr.it',
 };
 const domainkeys = Object.keys(domains);
 
 var hosts = {
-  'dr1.unipr.it': '160.78.28.201',
-  'dr2.unipr.it': '160.78.28.202',
-  'dr3.unipr.it': '160.78.28.203',
+  'dr12.unipr.it': '160.78.28.201',
+  'dr34.unipr.it': '160.78.28.202',
+  'dr56.unipr.it': '160.78.28.203',
 };
 //const hostkeys = Object.keys(hosts);
 
@@ -114,14 +114,16 @@ const server = dns.createServer(function(request, send){
     var i = 0;
     for (x of instancevalues)
     {
-      if (x === query)
+      //if (x === query)
+      if (query.includes(x))
       {
         response.answers.push({
           name: query,
           type: Packet.TYPE.PTR,
           class: Packet.CLASS.IN,
           ttl: 100,
-          domain: instancekeys[i] + '.' + query,
+          //domain: instancekeys[i] + '.' + query,
+          domain: instancekeys[i] + '.' + x,
         });
       }
       i++;
