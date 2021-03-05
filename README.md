@@ -27,7 +27,7 @@ $ dig @127.0.0.1 -p 53 _dr._iot._udp -t PTR
 ```
 
 ```bash
-$ dig @127.0.0.1 -p 53 dr3.unipr.it -t A
+$ dig @127.0.0.1 -p 53 dr56.unipr.it -t A
 ```
 
 ### Run the server with Redis database
