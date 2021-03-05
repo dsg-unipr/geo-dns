@@ -17,21 +17,17 @@ in the main folder.
 
 ```bash
 $ cd example
-$ node  geo-server.js
+$ node  geo-server-std.js
 ```
 
 ### Test the simple standalone server
 
 ```bash
-$ dig @127.0.0.1 -p 53 _iot._udp -t PTR
+$ dig @127.0.0.1 -p 53 _dr._iot._udp -t PTR
 ```
 
 ```bash
-$ dig @127.0.0.1 -p 53 6gkzwgjz*._iot._udp -t SRV
-```
-
-```bash
-$ dig @127.0.0.1 -p 53 6gkzwgjzn820.unipr.it -t A
+$ dig @127.0.0.1 -p 53 dr3.unipr.it -t A
 ```
 
 ### Run the server with Redis database
