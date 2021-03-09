@@ -7,6 +7,7 @@ var instances = {
   'humidity.dr12': '_iot._udp',
   'temperature.dr34': '_iot._udp',
   'temperature.dr56': '_iot._udp',
+  'temperature.bc21': '_iot._udp',
 };
 const instancekeys = Object.keys(instances);
 const instancevalues = Object.values(instances);
@@ -112,19 +113,23 @@ const server = dns.createServer(function(request, send){
   {
     var x;
     var i = 0;
+    var subdomain = querytokens[0].substring(1);
+    //console.log('subdomain: %s', subdomain);
     for (x of instancevalues)
     {
-      //if (x === query)
+      var instancetokens = instancekeys[i].split(".");
       if (query.includes(x))
       {
-        response.answers.push({
-          name: query,
-          type: Packet.TYPE.PTR,
-          class: Packet.CLASS.IN,
-          ttl: 100,
-          //domain: instancekeys[i] + '.' + query,
-          domain: instancekeys[i] + '.' + x,
-        });
+        if (instancetokens[instancetokens.length - 1].includes(subdomain))
+        {
+          response.answers.push({
+            name: query,
+            type: Packet.TYPE.PTR,
+            class: Packet.CLASS.IN,
+            ttl: 100,
+            domain: instancekeys[i] + '.' + x,
+          });
+        }
       }
       i++;
     }
@@ -141,6 +146,9 @@ const server = dns.createServer(function(request, send){
         address: hosts[query],
       });
     }
+  }
+  else if (type === Packet.TYPE.ALL)
+  {
   }
 
   send(response);

@@ -3,20 +3,20 @@ const dns    = require('../');
 const Packet = require('../packet');
 
 
-var instances = {
+var instances = { // used for PTR queries
   '6gkzwgjzn820': '_iot._udp',
   '6gkzwgjz': '_iot._udp',
 };
 const instancekeys = Object.keys(instances);
 const instancevalues = Object.values(instances);
 
-var domains = {
+var domains = {  // used for SRV queries
   '6gkzwgjzn820._iot._udp': '6gkzwgjzn820.unipr.it',
   '6gkzwgjz._iot._udp': '6gkzwgjz.unipr.it',
 };
 const domainkeys = Object.keys(domains);
 
-var hosts = {
+var hosts = { // used for A queries
   '6gkzwgjzn820.unipr.it': '160.78.28.201',
   '6gkzwgjz.unipr.it': '160.78.28.202',
 };
